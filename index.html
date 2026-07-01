@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Emily &amp; Jean are getting married in Harbour Grace, Newfoundland on August 28, 2027.">
+  <title>Emily &amp; Jean · On the Rock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <img class="loader__ring" src="images/loader.gif" alt="" aria-hidden="true">
+      <p class="loader__tag">Harbour Grace</p>
+      <h1 class="loader__title">On the Rock</h1>
+    </div>
+  </div>
+
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Main">
+      <a class="nav__brand" href="#top">Emily &amp; Jean</a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#location">Location</a></li>
+        <li><a href="#travel">Travel</a></li>
+        <li><a href="#accommodations">Stay</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#rehearsal">Rehearsal</a></li>
+        <li><a href="#registry">Registry</a></li>
+        <li><a href="#uploads">Songs</a></li>
+        <li><a href="#weather">Weather</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__photo hero__photo--placeholder" role="img" aria-label="Newfoundland coastline at Cape Spear"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">We're getting married on the Rock</p>
+        <h1 class="hero__names">Emily &amp; Jean</h1>
+        <p class="hero__date">August 28, 2027 · Harbour Grace, NL</p>
+        <p class="hero__intro">Welcome! Below is everything you should need for a fun, safe, and relaxing time at our wedding.</p>
+        <a class="btn btn--light" href="#location">See the details</a>
+      </div>
+      <div class="hero__colors" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <section class="section" id="location">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Location</p>
+        <h2 class="text-center">Harbour Grace, NL</h2>
+        <p class="text-center subhead">Newfoundland &amp; Labrador</p>
+
+        <div class="section__grid section__grid--split">
+          <div class="map-block__embed reveal">
+            <iframe
+              class="map-block__frame"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10763.099776584832!2d-53.270268!3d47.692905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b7d3a7a7a7a7a7a%3A0x7a7a7a7a7a7a7a7a!2s1-9%20Water%20St%20E%2C%20Harbour%20Grace%2C%20NL%20A0A%202M0!5e0!3m2!1sen!2sca!4v1"
+              title="Map of 1-9 Water St E, Harbour Grace"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="reveal">
+            <h3>Ceremony</h3>
+            <p class="lead"><strong>The Cathedral at Harbour Grace</strong><br>1-9 Water St E<br>Harbour Grace, NL A0A 2M0</p>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=1-9+Water+St+E,+Harbour+Grace,+NL+A0A+2M0" target="_blank" rel="noopener">Open in Google Maps →</a></p>
+            <h3>Reception</h3>
+            <p class="lead"><strong>The Old Courthouse</strong><br>1-9 Water St E<br>Harbour Grace, NL A0A 2M0</p>
+            <p class="muted">The Old Courthouse is adjacent to The Cathedral at Harbour Grace.</p>
+
+            <p class="muted">Having trouble making plans? <a href="#contact">Contact us directly</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--ocean" id="travel">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Travel &amp; Shuttles</p>
+        <h2 class="text-center">Getting to the Rock</h2>
+
+        <div class="section__grid section__grid--split">
+          <div class="reveal">
+            <h3>Getting there</h3>
+            <p class="lead">The nearest airport is St. John's International (YYT) — about 106 km, roughly 1 hr 10 min by car.</p>
+            <p>Public transit is not available in this area, so you'll need your own wheels or a ride with other guests.</p>
+            <p><strong>Rental cars</strong> — Rental vehicles in Newfoundland book out quickly, especially in summer. We recommend booking as early as possible for the best availability and rates. If you run into any challenges renting, please let Jean or Emily know — carpools can be arranged on an as-needed basis with other guests and family.</p>
+          </div>
+
+          <div class="info-block reveal">
+            <h3>Shuttles</h3>
+            <p>We'll offer one shuttle to Harbour Grace on Friday and one return trip to St. John's on Sunday. Outside of those two trips, you'll be responsible for your own ride.</p>
+            <ul class="travel-list">
+              <li><strong>Friday:</strong> Shuttle from St. John's to Harbour Grace (time TBA)</li>
+              <li><strong>Sunday:</strong> Shuttle from Harbour Grace back to St. John's (time TBA)</li>
+            </ul>
+            <p class="muted">If your flight falls outside those windows or you'd like more flexibility, a rental car is the way to go. We'll post exact pickup times closer to the date.</p>
+            <p style="margin-top:1.5rem"><a class="btn btn--weather" href="https://chill-fin-c19.notion.site/3854c963e0de80a6b567fff6775848d5?pvs=105" target="_blank">🚌 Shuttle RSVP</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--mist" id="accommodations">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Accommodations</p>
+        <h2 class="text-center">Where to stay</h2>
+
+        <div class="section__grid section__grid--split">
+          <div class="reveal">
+            <h3>Places to stay</h3>
+            <p>There aren't really taxis or rideshares in Harbour Grace, but we'll be running a shuttle for those staying nearby. We recommend booking accommodations as close to the venue as possible.</p>
+            <p>Housing is limited in the area, so we kindly ask that you book only what you need and avoid overbooking — we want to make sure everyone has a place to stay. Please book as soon as you're able.</p>
+            <p class="muted" style="margin-top:1.5rem">Trouble finding a place? <a href="#contact">Email us</a> and we'll help.</p>
+          </div>
+          <div class="reveal" style="display:flex;flex-direction:column;justify-content:center">
+            <p><a class="btn btn--weather" href="https://www.airbnb.ca/s/Harbour-Grace--NL--Canada/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2027-08-01&monthly_length=3&monthly_end_date=2027-11-01&date_picker_type=calendar&checkin=2027-08-27&checkout=2027-08-29&source=suburbs&search_type=search_query&region_id=6791&region_type=6&place_id=ChIJK1Fo1MF2F0sRVGQl-wYETSY&ne_lat=47.6953&ne_lng=-53.2127&sw_lat=47.6765&sw_lng=-53.2733&zoom=14&search_by=map" target="_blank">Search Airbnb →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="schedule">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Schedule</p>
+        <h2 class="text-center">Rehearsal party &amp; day-of</h2>
+        <p class="text-center subhead">Times are still being finalized — check back closer to the date.</p>
+
+        <div class="timeline">
+          <article class="timeline__item reveal">
+            <h3>Pickup window</h3>
+            <p>Time to be announced. If you're taking the shuttle, please arrive 10 minutes early.</p>
+          </article>
+          <article class="timeline__item reveal">
+            <time class="timeline__when">Ceremony</time>
+            <h3>Ceremony start</h3>
+            <p>Time to be announced · The Old Courthouse, Harbour Grace</p>
+          </article>
+          <article class="timeline__item reveal">
+            <time class="timeline__when">Cocktail hour</time>
+            <h3>Cocktails</h3>
+            <p>Time to be announced</p>
+          </article>
+          <article class="timeline__item reveal">
+            <time class="timeline__when">Reception</time>
+            <h3>Reception &amp; dinner</h3>
+            <p>Time to be announced</p>
+          </article>
+          <article class="timeline__item reveal">
+            <time class="timeline__when">Send-off</time>
+            <h3>Last call &amp; send-off</h3>
+            <p>Times to be announced</p>
+          </article>
+          <article class="timeline__item timeline__item--optional reveal">
+            <h3>After-party <span class="tag">Optional</span></h3>
+            <p>Location and start time — coming soon</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--mist" id="rehearsal">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Rehearsal Party</p>
+        <h2 class="text-center">Kick off the weekend</h2>
+
+        <div class="section__grid section__grid--split">
+          <div>
+            <div class="carousel reveal" id="carousel">
+              <div class="carousel__track">
+                <div class="carousel__slide"><img src="images/IMG_9875.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_9797.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_9612.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_8609.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_8557.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_7268.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_2703.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_0990.jpeg" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_0917.JPG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/IMG_0631.JPEG" alt="Bride and groom" loading="lazy"></div>
+                <div class="carousel__slide"><img src="images/f5f8cb9c-d186-43bf-9b7a-830ba5b8a5db.jpg" alt="Bride and groom" loading="lazy"></div>
+              </div>
+              <button class="carousel__btn carousel__btn--prev" aria-label="Previous photo">‹</button>
+              <button class="carousel__btn carousel__btn--next" aria-label="Next photo">›</button>
+              <div class="carousel__dots"></div>
+            </div>
+          </div>
+          <div>
+            <div class="info-block info-block--light reveal">
+              <ul class="plain-list">
+                <li><strong>Date:</strong> To be announced</li>
+                <li><strong>Time:</strong> To be announced</li>
+                <li><strong>Location:</strong> To be announced</li>
+                <li><strong>Dress code:</strong> To be announced</li>
+                <li><strong>Food &amp; drinks:</strong> To be announced</li>
+              </ul>
+              <p class="muted">Questions or trouble finding the venue? <a href="#contact">Contact us</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="registry">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Donation Registry</p>
+        <h2 class="text-center">Give if you'd like</h2>
+        <p class="text-center subhead">Your presence is the greatest gift. If you'd like to contribute, here are causes close to our hearts.</p>
+
+        <div class="flip-cards">
+          <div class="flip-card reveal" tabindex="0">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <h3>Cure Alzheimer's Fund</h3>
+                <p class="flip-card__hint">Click to learn more</p>
+              </div>
+              <div class="flip-card__back">
+                <p>Accelerating research to find a cure for Alzheimer's disease. Every dollar funds high-impact science.</p>
+                <a class="btn btn--light" href="https://curealz.org/" target="_blank">Donate →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card reveal" tabindex="0">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <h3>Second charity</h3>
+                <p class="flip-card__hint">Coming soon</p>
+              </div>
+              <div class="flip-card__back">
+                <p>Details to be announced.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card reveal" tabindex="0">
+            <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <h3>Third charity</h3>
+                <p class="flip-card__hint">Coming soon</p>
+              </div>
+              <div class="flip-card__back">
+                <p>Details to be announced.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--uploads" id="uploads">
+      <div class="section--uploads__bg"></div>
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Get Involved</p>
+        <h2 class="text-center">Music &amp; Memories</h2>
+        <p class="text-center subhead">Request a song for the dance floor and share your photos from the weekend.</p>
+
+        <div class="weather-links">
+          <a class="btn btn--weather reveal" href="https://chill-fin-c19.notion.site/9f50370244dc41f0b51a8b7dd42fc88c" target="_blank">🎵 Request a Song</a>
+          <a class="btn btn--weather reveal" href="https://chill-fin-c19.notion.site/3844c963e0de8051b575eb10fa07f57b" target="_blank">📸 Submit Photos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rsvp" id="weather">
+      <div class="container container--narrow">
+        <p class="eyebrow eyebrow--center">Weather</p>
+        <h2 class="text-center">What to expect</h2>
+        <p class="text-center subhead">Late August in Newfoundland can be anything — check the forecast and see what history says.</p>
+        <div class="weather-links">
+          <a class="btn btn--weather reveal" href="aug28_climate_stjohns.html" target="_blank">📊 Historical climate</a>
+          <a class="btn btn--weather reveal" href="#" data-modal="forecast">🌤 7-day forecast</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--mist" id="faq">
+      <div class="container container--narrow">
+        <p class="eyebrow eyebrow--center">FAQ</p>
+        <h2 class="text-center">Know Before You Go</h2>
+
+        <details class="faq reveal">
+          <summary>What to bring</summary>
+          <p>Outerwear — it's Newfoundland, after all; hope for the best but expect rain. Comfortable shoes are also a must for exploring.</p>
+        </details>
+
+        <details class="faq reveal">
+          <summary>What to do in and around St. John's</summary>
+          <p>Details coming soon — we'll share our top spots for exploring the city.</p>
+        </details>
+
+        <details class="faq reveal">
+          <summary>Fun hikes</summary>
+          <p>Details coming soon — Newfoundland has some incredible trails.</p>
+        </details>
+
+        <details class="faq reveal">
+          <summary>Our favourite eats</summary>
+          <p>Details coming soon — we'll share the restaurants and spots we love.</p>
+        </details>
+
+        <details class="faq reveal">
+          <summary>What to do if making a trip out of it</summary>
+          <p>Details coming soon — tips for extending your stay and exploring more of the island.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container container--narrow">
+        <p class="eyebrow eyebrow--center">Contact</p>
+        <h2 class="text-center">Questions? Reach out.</h2>
+        <p class="text-center subhead">If you have any questions, email Emily and Jean — we're happy to help.</p>
+
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="mailto:emilyandjean2027@gmail.com">
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__value">emilyandjean2027@gmail.com</span>
+          </a>
+          <div class="contact-card reveal">
+            <span class="contact-card__label">Emily</span>
+            <a class="contact-card__value" href="tel:+17097288741">709-728-8741</a>
+          </div>
+          <div class="contact-card reveal">
+            <span class="contact-card__label">Jean</span>
+            <a class="contact-card__value" href="tel:+17093278469">709-327-8469</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="tldr" id="tldr">
+    <button class="tldr__toggle" id="tldr-toggle" aria-label="Toggle TL;DR">
+      <span class="tldr__icon">ℹ</span>
+      <span class="tldr__label">TL;DR</span>
+    </button>
+    <div class="tldr__panel" id="tldr-panel">
+      <div class="tldr__head">
+        <strong>Quick summary</strong>
+        <button class="tldr__close" id="tldr-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="tldr__body">
+        <div class="tldr__item">
+          <span class="tldr__dot" style="background:var(--sunset)"></span>
+          <div><strong>Event dates</strong><br>August 27–29, 2027</div>
+        </div>
+        <div class="tldr__item">
+          <span class="tldr__dot" style="background:var(--ocean-light)"></span>
+          <div><strong>Location</strong><br>1-9 Water St E, Harbour Grace, NL</div>
+        </div>
+        <div class="tldr__item">
+          <span class="tldr__dot" style="background:var(--gold)"></span>
+          <div><strong>Shuttle RSVP</strong><br><a href="https://chill-fin-c19.notion.site/3854c963e0de80a6b567fff6775848d5?pvs=105" target="_blank">Sign up for the shuttle →</a></div>
+        </div>
+        <div class="tldr__item">
+          <span class="tldr__dot" style="background:var(--jelly-4)"></span>
+          <div><strong>Book early</strong><br>Accommodations &amp; rental cars book out quickly — reserve as soon as you can.</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="modal-forecast">
+    <div class="modal">
+      <div class="modal__header">
+        <span class="modal__title">Harbour Grace weather forecast</span>
+        <button class="modal__close" data-close="modal-forecast" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal__body modal__body--forecast">
+        <iframe src="https://weather.gc.ca/en/location/index.html?coords=47.691,-53.227" title="Harbour Grace weather forecast"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <svg class="footer__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,40 C240,70 480,10 720,40 C960,70 1200,10 1440,40 L1440,0 L0,0 Z"/>
+    </svg>
+    <p>With love from the edge of the Atlantic.</p>
+    <p class="footer__names">Emily &amp; Jean · 2027</p>
+    <a class="footer__top" href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

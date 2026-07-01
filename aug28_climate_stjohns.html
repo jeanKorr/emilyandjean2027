@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>August 28 Climate — St. Johns West</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #f7f8fa;
+    color: #1a1f2e;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 28px 24px 32px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header { margin-bottom: 20px; }
+  .location {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  h1 { font-size: 20px; font-weight: 700; color: #1a1f2e; line-height: 1.3; }
+  h1 span { color: #2563eb; }
+  .period { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+
+  /* Description */
+  .description {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #374151;
+    margin-bottom: 22px;
+  }
+
+  /* Stat cards */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .stat-icon { font-size: 20px; margin-bottom: 4px; }
+  .stat-label { font-size: 11px; color: #6b7280; margin-bottom: 6px; font-weight: 500; }
+  .stat-value { font-size: 24px; font-weight: 700; line-height: 1; }
+  .stat-value.hot  { color: #dc2626; }
+  .stat-value.mid  { color: #2563eb; }
+  .stat-value.cold { color: #16a34a; }
+  .stat-value.rain { color: #7c3aed; }
+  .stat-unit { font-size: 13px; font-weight: 400; opacity: 0.7; }
+  .stat-meta { font-size: 11px; color: #9ca3af; margin-top: 5px; }
+
+  /* Precip card full-width */
+  .stat-row-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+    margin-top: -14px;
+  }
+  .stat-card-wide {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .stat-card-wide .stat-icon { font-size: 24px; margin: 0; }
+  .stat-card-wide .stat-label { text-align: left; margin-bottom: 2px; }
+  .stat-card-wide .stat-value { font-size: 22px; }
+  .stat-card-wide .stat-meta { margin-top: 2px; }
+
+  /* Chart tabs */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .tab {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #6b7280;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .tab:hover { border-color: #93c5fd; color: #2563eb; }
+  .tab.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+  /* Chart */
+  .chart-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 16px 10px;
+    margin-bottom: 16px;
+  }
+  .chart-subtitle {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 180px;
+    cursor: crosshair;
+  }
+  canvas { display: block; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #6b7280; }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .leg-line { width: 14px; height: 2px; border-radius: 1px; flex-shrink: 0; }
+
+  /* Tooltip */
+  .tooltip {
+    position: absolute;
+    background: #1f2937;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #f9fafb;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 10;
+    line-height: 1.8;
+  }
+  .tooltip.visible { opacity: 1; }
+  .tt-day  { font-weight: 600; color: #93c5fd; margin-bottom: 2px; }
+  .tt-hi   { color: #fca5a5; }
+  .tt-lo   { color: #86efac; }
+  .tt-mid  { color: #93c5fd; }
+  .tt-pr   { color: #c4b5fd; }
+  .tt-dim  { color: #9ca3af; font-size: 11px; }
+
+  /* Source */
+  .source {
+    font-size: 11px;
+    color: #9ca3af;
+    line-height: 1.6;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 12px;
+  }
+  .source a { color: #2563eb; text-decoration: none; }
+  .source a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="location">St. Johns West Climate Station · NL, Canada</div>
+  <h1>Weather on <span>August 28</span></h1>
+  <div class="period">Historical records · 2010–2025</div>
+</div>
+
+<div class="description">
+  August 28 in St. John's West is typically a mild late-summer day. Temperatures have ranged widely on this date — from a record low of 4.7°C (2017) on an unseasonably cool year to a warm high of 26.0°C (2012). The middle of that range sits around 15°C, which is fairly representative of what you'd expect on a typical late August afternoon. Precipitation is generally light on this date, with the greatest single-day total on record being 11.7 mm in 2014 — modest by Newfoundland standards.
+</div>
+
+<!-- Temp stats -->
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="stat-icon">🌡️</div>
+    <div class="stat-label">Record High</div>
+    <div class="stat-value hot">26.0<span class="stat-unit">°C</span></div>
+    <div class="stat-meta">set in 2012</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">↕️</div>
+    <div class="stat-label">Mid-range</div>
+    <div class="stat-value mid">15.4<span class="stat-unit">°C</span></div>
+    <div class="stat-meta">span: 21.3°C</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">❄️</div>
+    <div class="stat-label">Record Low</div>
+    <div class="stat-value cold">4.7<span class="stat-unit">°C</span></div>
+    <div class="stat-meta">set in 2017</div>
+  </div>
+</div>
+
+<!-- Precip stat -->
+<div class="stat-row-2">
+  <div class="stat-card-wide">
+    <div class="stat-icon">🌧️</div>
+    <div>
+      <div class="stat-label">Greatest Single-Day Precipitation</div>
+      <div class="stat-value rain">11.7 <span class="stat-unit">mm</span></div>
+      <div class="stat-meta">set in 2014</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" id="tab-temp" onclick="showTab('temp')">🌡 Temperature Range</div>
+  <div class="tab" id="tab-precip" onclick="showTab('precip')">🌧 Precipitation</div>
+</div>
+
+<!-- Chart -->
+<div class="chart-card">
+  <div class="chart-subtitle" id="chart-subtitle">Record high, mid-range, and record low for each August day (°C) — hover to explore</div>
+  <div class="chart-wrap" id="chart-wrap">
+    <canvas id="mainChart"></canvas>
+    <div class="tooltip" id="tooltip"></div>
+  </div>
+  <div class="legend" id="legend-temp">
+    <div class="legend-item"><div class="leg-dot" style="background:#dc2626"></div>Record High</div>
+    <div class="legend-item"><div class="leg-dot" style="background:#2563eb"></div>Mid-range</div>
+    <div class="legend-item"><div class="leg-dot" style="background:#16a34a"></div>Record Low</div>
+    <div class="legend-item"><div class="leg-line" style="background:#2563eb;opacity:0.4;border-top:2px dashed #2563eb;height:0;"></div>Aug 28</div>
+  </div>
+  <div class="legend" id="legend-precip" style="display:none">
+    <div class="legend-item"><div class="leg-dot" style="background:#7c3aed"></div>Greatest precipitation (mm)</div>
+    <div class="legend-item"><div class="leg-dot" style="background:#7c3aed;opacity:1;box-shadow:0 0 0 2px #7c3aed"></div>Aug 28 highlighted</div>
+  </div>
+</div>
+
+<div class="source">
+  Source: Environment and Climate Change Canada — Climate Data Online ·
+  <a href="https://climate.weather.gc.ca/climate_data/almanac_e.html?climate_id=8403603&period=1&searchMethod=contains&txtStationName=st+johns+west&month=8&day=28" target="_blank">
+    Station 8403603, August 28 Almanac ↗
+  </a>
+</div>
+
+<script>
+const data = [
+  {day:1,  hi:29.0,hiY:'2024',lo:6.5, loY:'2011',pr:4.4, prY:'2015'},
+  {day:2,  hi:28.2,hiY:'2022',lo:5.7, loY:'2011',pr:1.3, prY:'2024'},
+  {day:3,  hi:28.4,hiY:'2020',lo:4.1, loY:'2016',pr:10.6,prY:'2018'},
+  {day:4,  hi:28.4,hiY:'2012',lo:4.9, loY:'2016',pr:14.5,prY:'2013'},
+  {day:5,  hi:29.9,hiY:'2022',lo:6.3, loY:'2025',pr:20.5,prY:'2011'},
+  {day:6,  hi:27.9,hiY:'2020',lo:5.3, loY:'2025',pr:37.9,prY:'2011'},
+  {day:7,  hi:27.5,hiY:'2022',lo:9.2, loY:'2011',pr:52.3,prY:'2016'},
+  {day:8,  hi:28.2,hiY:'2012',lo:8.5, loY:'2011',pr:40.9,prY:'2014'},
+  {day:9,  hi:30.4,hiY:'2025',lo:4.7, loY:'2021',pr:38.8,prY:'2022'},
+  {day:10, hi:28.2,hiY:'2020',lo:3.8, loY:'2021',pr:19.4,prY:'2013'},
+  {day:11, hi:28.5,hiY:'2025',lo:8.4, loY:'2011',pr:15.0,prY:'2014'},
+  {day:12, hi:31.2,hiY:'2025',lo:8.6, loY:'2015',pr:8.2, prY:'2022'},
+  {day:13, hi:30.1,hiY:'2025',lo:9.5, loY:'2016',pr:24.8,prY:'2017'},
+  {day:14, hi:27.6,hiY:'2018',lo:10.5,loY:'2016',pr:15.7,prY:'2013'},
+  {day:15, hi:28.7,hiY:'2025',lo:4.4, loY:'2020',pr:27.9,prY:'2018'},
+  {day:16, hi:25.4,hiY:'2015',lo:4.2, loY:'2020',pr:20.7,prY:'2011'},
+  {day:17, hi:25.5,hiY:'2020',lo:3.8, loY:'2025',pr:21.1,prY:'2022'},
+  {day:18, hi:28.6,hiY:'2021',lo:7.6, loY:'2019',pr:10.2,prY:'2014'},
+  {day:19, hi:27.3,hiY:'2021',lo:5.7, loY:'2017',pr:52.3,prY:'2024'},
+  {day:20, hi:27.1,hiY:'2024',lo:5.1, loY:'2013',pr:37.8,prY:'2021'},
+  {day:21, hi:25.9,hiY:'2019',lo:5.1, loY:'2013',pr:5.0, prY:'2014'},
+  {day:22, hi:26.8,hiY:'2015',lo:7.9, loY:'2025',pr:16.2,prY:'2019'},
+  {day:23, hi:26.7,hiY:'2018',lo:7.0, loY:'2025',pr:13.6,prY:'2016'},
+  {day:24, hi:26.6,hiY:'2017',lo:7.1, loY:'2019',pr:16.3,prY:'2020'},
+  {day:25, hi:25.7,hiY:'2018',lo:4.6, loY:'2019',pr:14.0,prY:'2017'},
+  {day:26, hi:27.0,hiY:'2024',lo:8.2, loY:'2023',pr:41.7,prY:'2020'},
+  {day:27, hi:25.4,hiY:'2012',lo:7.6, loY:'2023',pr:7.9, prY:'2016'},
+  {day:28, hi:26.0,hiY:'2012',lo:4.7, loY:'2017',pr:11.7,prY:'2014'},
+  {day:29, hi:26.4,hiY:'2011',lo:4.1, loY:'2017',pr:8.1, prY:'2014'},
+  {day:30, hi:24.9,hiY:'2022',lo:5.5, loY:'2014',pr:36.9,prY:'2020'},
+  {day:31, hi:27.0,hiY:'2022',lo:4.1, loY:'2013',pr:33.5,prY:'2023'},
+];
+
+let activeTab = 'temp';
+const canvas  = document.getElementById('mainChart');
+const tip     = document.getElementById('tooltip');
+const wrap    = document.getElementById('chart-wrap');
+
+function L() {
+  const W=wrap.clientWidth, H=wrap.clientHeight;
+  const pL=36,pR=10,pT=12,pB=28;
+  const plotW=W-pL-pR, plotH=H-pT-pB;
+  return {W,H,pL,pR,pT,pB,plotW,plotH,n:data.length,slotW:plotW/data.length};
+}
+
+function resize(){
+  canvas.width=wrap.clientWidth;
+  canvas.height=wrap.clientHeight;
+  draw();
+}
+
+function yS(v,mn,mx,pH,pT){ return pT+pH-((v-mn)/(mx-mn))*pH; }
+
+function draw(){
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  activeTab==='temp'?drawTemp(ctx):drawPrecip(ctx);
+}
+
+function drawGrid(ctx,mn,mx,steps,l){
+  for(let i=0;i<=steps;i++){
+    const v=mn+(mx-mn)*(i/steps);
+    const y=l.pT+l.plotH-(i/steps)*l.plotH;
+    ctx.strokeStyle='#f0f0f0'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(l.pL,y); ctx.lineTo(l.W-l.pR,y); ctx.stroke();
+    ctx.fillStyle='#9ca3af'; ctx.font='10px system-ui'; ctx.textAlign='right';
+    ctx.fillText(Math.round(v),l.pL-4,y+3.5);
+  }
+}
+
+function drawDayLabels(ctx,l){
+  ctx.fillStyle='#9ca3af'; ctx.font='10px system-ui'; ctx.textAlign='center';
+  const y=l.pT+l.plotH+18;
+  data.forEach((d,i)=>{
+    if(d.day===1||d.day%5===0||d.day===28){
+      const x=l.pL+i*l.slotW+l.slotW/2;
+      ctx.fillStyle=d.day===28?'#2563eb':'#9ca3af';
+      ctx.fillText(d.day,x,y);
+    }
+  });
+}
+
+function draw28line(ctx,l){
+  const x=l.pL+27*l.slotW+l.slotW/2;
+  ctx.save();
+  ctx.strokeStyle='#2563eb'; ctx.globalAlpha=0.25; ctx.lineWidth=1.5; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(x,l.pT); ctx.lineTo(x,l.pT+l.plotH); ctx.stroke();
+  ctx.restore();
+}
+
+function drawTemp(ctx){
+  const l=L(), mn=0, mx=34;
+  drawGrid(ctx,mn,mx,5,l);
+  drawDayLabels(ctx,l);
+
+  // Band fill
+  ctx.beginPath();
+  data.forEach((d,i)=>{
+    const x=l.pL+i*l.slotW+l.slotW/2, y=yS(d.hi,mn,mx,l.plotH,l.pT);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  for(let i=data.length-1;i>=0;i--){
+    ctx.lineTo(l.pL+i*l.slotW+l.slotW/2,yS(data[i].lo,mn,mx,l.plotH,l.pT));
+  }
+  ctx.closePath(); ctx.fillStyle='rgba(37,99,235,0.06)'; ctx.fill();
+
+  // High line
+  ctx.beginPath(); ctx.strokeStyle='#dc2626'; ctx.lineWidth=2;
+  data.forEach((d,i)=>{ const x=l.pL+i*l.slotW+l.slotW/2; i===0?ctx.moveTo(x,yS(d.hi,mn,mx,l.plotH,l.pT)):ctx.lineTo(x,yS(d.hi,mn,mx,l.plotH,l.pT)); }); ctx.stroke();
+
+  // Low line
+  ctx.beginPath(); ctx.strokeStyle='#16a34a'; ctx.lineWidth=2;
+  data.forEach((d,i)=>{ const x=l.pL+i*l.slotW+l.slotW/2; i===0?ctx.moveTo(x,yS(d.lo,mn,mx,l.plotH,l.pT)):ctx.lineTo(x,yS(d.lo,mn,mx,l.plotH,l.pT)); }); ctx.stroke();
+
+  // Mid dashed
+  ctx.beginPath(); ctx.strokeStyle='#2563eb'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+  data.forEach((d,i)=>{ const x=l.pL+i*l.slotW+l.slotW/2; const y=yS((d.hi+d.lo)/2,mn,mx,l.plotH,l.pT); i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); });
+  ctx.stroke(); ctx.setLineDash([]);
+
+  draw28line(ctx,l);
+
+  // Aug 28 dots
+  const d28=data[27], x28=l.pL+27*l.slotW+l.slotW/2;
+  [[d28.hi,'#dc2626'],[(d28.hi+d28.lo)/2,'#2563eb'],[d28.lo,'#16a34a']].forEach(([v,c])=>{
+    const y=yS(v,mn,mx,l.plotH,l.pT);
+    ctx.beginPath(); ctx.arc(x28,y,5,0,Math.PI*2);
+    ctx.fillStyle=c; ctx.fill();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.stroke();
+  });
+}
+
+function drawPrecip(ctx){
+  const l=L(), mn=0, mx=60;
+  drawGrid(ctx,mn,mx,4,l);
+  drawDayLabels(ctx,l);
+  const bw=Math.max(l.slotW*0.6,4);
+  data.forEach((d,i)=>{
+    const x=l.pL+i*l.slotW+l.slotW/2-bw/2;
+    const bh=(d.pr/mx)*l.plotH;
+    const y=l.pT+l.plotH-bh;
+    const is28=d.day===28;
+    ctx.fillStyle=is28?'#7c3aed':'rgba(124,58,237,0.25)';
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(x,y,bw,bh,[2,2,0,0]);
+    else ctx.rect(x,y,bw,bh);
+    ctx.fill();
+    if(is28){ ctx.strokeStyle='#7c3aed'; ctx.lineWidth=1.5; ctx.stroke(); }
+  });
+  draw28line(ctx,l);
+}
+
+// Tooltip
+canvas.addEventListener('mousemove',e=>{
+  const r=canvas.getBoundingClientRect();
+  const mx=e.clientX-r.left, my=e.clientY-r.top;
+  const l=L();
+  const idx=Math.floor((mx-l.pL)/l.slotW);
+  if(idx<0||idx>=data.length){ tip.classList.remove('visible'); return; }
+  const d=data[idx];
+  const mid=((d.hi+d.lo)/2).toFixed(1);
+  const is28=d.day===28;
+  let html=`<div class="tt-day">Aug ${d.day}${is28?' ★':''}</div>`;
+  if(activeTab==='temp'){
+    html+=`<div class="tt-hi">▲ High  ${d.hi}°C <span style="opacity:.6">(${d.hiY})</span></div>`;
+    html+=`<div class="tt-mid">◆ Mid   ${mid}°C</div>`;
+    html+=`<div class="tt-lo">▼ Low   ${d.lo}°C <span style="opacity:.6">(${d.loY})</span></div>`;
+    html+=`<div class="tt-dim">Range: ${(d.hi-d.lo).toFixed(1)}°C</div>`;
+  } else {
+    html+=`<div class="tt-pr">🌧 ${d.pr} mm <span style="opacity:.6">(${d.prY})</span></div>`;
+  }
+  tip.innerHTML=html; tip.classList.add('visible');
+  const tw=tip.offsetWidth, th=tip.offsetHeight;
+  let left=mx+16; if(left+tw>wrap.clientWidth-8) left=mx-tw-16;
+  tip.style.left=left+'px';
+  tip.style.top=Math.max(4,my-th/2)+'px';
+});
+canvas.addEventListener('mouseleave',()=>tip.classList.remove('visible'));
+
+function showTab(t){
+  activeTab=t;
+  document.getElementById('tab-temp').classList.toggle('active',t==='temp');
+  document.getElementById('tab-precip').classList.toggle('active',t==='precip');
+  document.getElementById('legend-temp').style.display=t==='temp'?'flex':'none';
+  document.getElementById('legend-precip').style.display=t==='precip'?'flex':'none';
+  document.getElementById('chart-subtitle').textContent=t==='temp'
+    ?'Record high, mid-range, and record low for each August day (°C) — hover to explore'
+    :'Greatest single-day precipitation for each August day (mm) — hover to explore';
+  draw();
+}
+
+window.addEventListener('resize',resize);
+resize();
+</script>
+</body>
+</html>
