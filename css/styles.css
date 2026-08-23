@@ -68,7 +68,7 @@ code { font-size: 0.85em; background: var(--fog); padding: 0.15em 0.4em; border-
   place-items: center;
   background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid), var(--ocean-surf), var(--ocean-mid), var(--ocean-deep));
   background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
+  animation: gradientShift 9.2s ease infinite;
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes gradientShift {
