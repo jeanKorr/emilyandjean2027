@@ -9,11 +9,11 @@
     document.body.classList.add('is-loaded');
   }
 
-  var loadTimer = setTimeout(dismissLoader, 3000);
+  var loadTimer = setTimeout(dismissLoader, 2000);
 
   window.addEventListener('load', function () {
     clearTimeout(loadTimer);
-    setTimeout(dismissLoader, 800);
+    setTimeout(dismissLoader, 1500);
   });
 
   if (document.readyState === 'complete') {
