@@ -381,7 +381,7 @@ body.is-loaded .hero__colors { transform: scaleX(1); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  align-items: start;
 }
 @media (max-width: 768px) {
   .section__grid--split { grid-template-columns: 1fr; }
